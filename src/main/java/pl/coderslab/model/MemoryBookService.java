@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class MemoryBookService {
+public class MemoryBookService  implements BookService {
 
     private List<Book> list;
 
@@ -19,12 +19,15 @@ public class MemoryBookService {
                 "Cay Horstmann, Gary Cornell", "Helion", "programming"));
     }
 
-    public List<Book> getList() {
-        return list;
-    }
-
     public Book getBook(int id) {
-        return list.get(id);
+
+        Book toRead = new Book();
+        for (Book book : list){
+            if (book.getId() == id){
+                toRead = book;
+            }
+        }
+        return toRead;
     }
 
     public void addBook( String isbn, String title, String author, String publisher, String type) {
@@ -41,7 +44,16 @@ public class MemoryBookService {
     }
 
     public void deleteBook(int id ) {
-        list.remove(id);
+
+        for (Book book : list){
+            if (book.getId() == id){
+                list.remove(book);
+            }
+        }
+    }
+
+    public List<Book> getList() {
+        return list;
     }
 
     public void setList(List<Book> list) {
