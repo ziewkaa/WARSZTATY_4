@@ -1,4 +1,4 @@
 package pl.coderslab.model;
 
-public class BookService {
+public interface BookService {
 }
